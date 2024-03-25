@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  app:
+    container_name: flipkoro-api
+    image: flipkoro-api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: php artisan serve
+    ports:
+      - 8000:8000
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
