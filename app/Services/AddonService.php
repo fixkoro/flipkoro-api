@@ -86,12 +86,12 @@ class AddonService
         $fullData = include($request['path'] . '/Addon/info.php');
         $path = $request['path'];
         $addonName = $fullData['name'];
-        if ($fullData['purchase_code'] == null || $fullData['username'] == null) {
-            return [
-                'flag' => 'inactive',
-                'view' => view(AddonSetup::ACTIVE_MODAL[VIEW], compact('fullData', 'path', 'addonName'))->render(),
-            ];
-        }
+//        if ($fullData['purchase_code'] == null || $fullData['username'] == null) {
+//            return [
+//                'flag' => 'inactive',
+//                'view' => view(AddonSetup::ACTIVE_MODAL[VIEW], compact('fullData', 'path', 'addonName'))->render(),
+//            ];
+//        }
         $fullData['is_published'] = $fullData['is_published'] ? 0 : 1;
         $str = "<?php return " . var_export($fullData, true) . ";";
         file_put_contents(base_path($request['path'] . '/Addon/info.php'), $str);

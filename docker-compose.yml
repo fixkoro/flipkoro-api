@@ -14,6 +14,10 @@ services:
       DB_DATABASE: test_db
       DB_USERNAME: root
       DB_PASSWORD: password
+      PURCHASE_CODE: 5915d718-ad31-4745-b756-4fe05c3d4ac4
+      BUYER_USERNAME: Dutytaker
+      SOFTWARE_ID: MzE0NDg1OTc=
+      SOFTWARE_VERSION: 14.4
     # volumes:
     #   - ./:/var/www/html
     #   - ./public:/var/www/html/public

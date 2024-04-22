@@ -151,6 +151,7 @@ use App\Enums\ViewPaths\Admin\ReactSetup;
 Route::post('change-language', [SharedController::class,'changeLanguage'])->name('change-language');
 
 Route::group(['prefix' => 'login'], function () {
+
     Route::get('{loginUrl}', [LoginController::class, 'index']);
     Route::get('recaptcha/{tmp}', [LoginController::class, 'generateReCaptcha'])->name('recaptcha');
     Route::post('/', [LoginController::class, 'login'])->name('login');

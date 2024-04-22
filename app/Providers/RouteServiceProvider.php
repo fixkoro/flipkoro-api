@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\RateLimiter;
 use App\Http\Requests\Request;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -36,6 +36,7 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+        $this->configureRateLimiting();
     }
 
     /**
@@ -45,8 +46,17 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->mapInstallRoutes();
+        $this->mapApiRoutes();
+        $this->mapApiv2Routes();
+        $this->mapApiv3Routes();
+        $this->mapApiv4Routes();
+
+        //$this->mapInstallRoutes();
         //$this->mapUpdateRoutes();
+
+        $this->mapBetaAdminRoutes();
+        $this->mapBetaVendorRoutes();
+        $this->mapBetaWebRoutes();
     }
 
     /**
