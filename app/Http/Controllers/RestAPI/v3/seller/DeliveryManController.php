@@ -136,8 +136,8 @@ class DeliveryManController extends Controller
 
         if (!empty($request->file('identity_image'))) {
             foreach (json_decode($delivery_man['identity_image'], true) as $img) {
-                if (Storage::disk('public')->exists('delivery-man/' . $img)) {
-                    Storage::disk('public')->delete('delivery-man/' . $img);
+                if (Storage::disk(config('filesystems.default'))->exists('delivery-man/' . $img)) {
+                    Storage::disk(config('filesystems.default'))->delete('delivery-man/' . $img);
                 }
             }
             $img_keeper = [];
@@ -193,13 +193,13 @@ class DeliveryManController extends Controller
         }
 
 
-        if (Storage::disk('public')->exists('delivery-man/' . $delivery_man['image'])) {
-            Storage::disk('public')->delete('delivery-man/' . $delivery_man['image']);
+        if (Storage::disk(config('filesystems.default'))->exists('delivery-man/' . $delivery_man['image'])) {
+            Storage::disk(config('filesystems.default'))->delete('delivery-man/' . $delivery_man['image']);
         }
 
         foreach (json_decode($delivery_man['identity_image'], true) as $img) {
-            if (Storage::disk('public')->exists('delivery-man/' . $img)) {
-                Storage::disk('public')->delete('delivery-man/' . $img);
+            if (Storage::disk(config('filesystems.default'))->exists('delivery-man/' . $img)) {
+                Storage::disk(config('filesystems.default'))->delete('delivery-man/' . $img);
             }
         }
 

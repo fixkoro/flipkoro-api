@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 's3'),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,13 +57,15 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
+            'key' => env('AWS_ACCESS_KEY_ID','7I3XYSVUUUUCQRWZCK44'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY','zUVH472T5NSRyrrSBHnsC3xWu2raM8zMFLJ3zPZaRoE'),
+            'region' => env('AWS_DEFAULT_REGION','sgp1'),
+            'bucket' => env('AWS_BUCKET','dev-loopfreight'),
+//            'url' => env('AWS_URL','https://sgp1.digitaloceanspaces.com'),
             'visibility' => 'public',
-            'endpoint' => env('AWS_ENDPOINT'),
+            'bucket_endpoint' => true,
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'endpoint' => env('AWS_ENDPOINT','https://sgp1.digitaloceanspaces.com'),
         ],
     ],
 

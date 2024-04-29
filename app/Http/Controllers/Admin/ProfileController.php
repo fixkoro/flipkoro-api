@@ -51,7 +51,6 @@ class ProfileController extends BaseController
      */
     public function update(AdminRequest $request, string|int $id):RedirectResponse
     {
-
         $admin = $this->adminRepo->getFirstWhere(['id' => $id]);
         $this->adminRepo->update(id: $id, data: $this->adminService->getAdminDataForUpdate(request: $request, admin: $admin));
         Toastr::success(translate('profile_updated_successfully'));

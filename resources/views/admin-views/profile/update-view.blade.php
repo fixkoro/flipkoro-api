@@ -65,7 +65,7 @@
                             class="avatar avatar-xxl avatar-circle avatar-border-lg avatar-uploader profile-cover-avatar"
                         >
                             <img id="viewer"    class="avatar-img"
-                                 src="{{getValidImage(path:'storage/app/public/admin/'.$admin->image, type:'backend-profile')}}"
+                                 src="{{getValidImage(path:'admin/'.$admin->image, type:'backend-profile')}}"
                                  alt="{{translate('image')}}">
                             <label class="change-profile-image-icon" for="custom-file-upload">
                                 <img src="{{dynamicAsset(path: 'public/assets/back-end/img/add-photo.png') }}" alt="">

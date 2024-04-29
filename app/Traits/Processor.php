@@ -67,13 +67,13 @@ trait  Processor
     {
         if ($image == null) return $old_image ?? 'def.png';
 
-        if (isset($old_image)) Storage::disk('public')->delete($dir . $old_image);
+        if (isset($old_image)) Storage::disk(config('filesystems.default'))->delete($dir . $old_image);
 
         $imageName = \Carbon\Carbon::now()->toDateString() . "-" . uniqid() . "." . $format;
-        if (!Storage::disk('public')->exists($dir)) {
-            Storage::disk('public')->makeDirectory($dir);
+        if (!Storage::disk(config('filesystems.default'))->exists($dir)) {
+            Storage::disk(config('filesystems.default'))->makeDirectory($dir);
         }
-        Storage::disk('public')->put($dir . $imageName, file_get_contents($image));
+        Storage::disk(config('filesystems.default'))->put($dir . $imageName, file_get_contents($image));
 
         return $imageName;
     }

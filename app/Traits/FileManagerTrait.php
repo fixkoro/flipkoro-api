@@ -26,14 +26,14 @@ trait FileManagerTrait
                 $imageName = Carbon::now()->toDateString() . "-" . uniqid() . "." . $format;
             }
 
-            if (!Storage::disk('public')->exists($dir)) {
-                Storage::disk('public')->makeDirectory($dir);
+            if (!Storage::disk(config('filesystems.default'))->exists($dir)) {
+                Storage::disk(config('filesystems.default'))->makeDirectory($dir);
             }
 
             if($isOriginalImage) {
-                Storage::disk('public')->put($dir . $imageName, file_get_contents($image));
+                Storage::disk(config('filesystems.default'))->put($dir . $imageName, file_get_contents($image));
             }else{
-                Storage::disk('public')->put($dir . $imageName, $image_webp);
+                Storage::disk(config('filesystems.default'))->put($dir . $imageName, $image_webp);
                 $image_webp->destroy();
             }
         } else {
@@ -53,10 +53,10 @@ trait FileManagerTrait
     {
         if (!is_null($file)) {
             $fileName = Carbon::now()->toDateString() . "-" . uniqid() . "." . $format;
-            if (!Storage::disk('public')->exists($dir)) {
-                Storage::disk('public')->makeDirectory($dir);
+            if (!Storage::disk(config('filesystems.default'))->exists($dir)) {
+                Storage::disk(config('filesystems.default'))->makeDirectory($dir);
             }
-            Storage::disk('public')->put($dir . $fileName, file_get_contents($file));
+            Storage::disk(config('filesystems.default'))->put($dir . $fileName, file_get_contents($file));
         } else {
             $fileName = 'def.png';
         }
@@ -74,8 +74,8 @@ trait FileManagerTrait
      */
     public function update(string $dir, $oldImage, string $format, $image, string $fileType = 'image'): string
     {
-        if (Storage::disk('public')->exists($dir . $oldImage)) {
-            Storage::disk('public')->delete($dir . $oldImage);
+        if (Storage::disk(config('filesystems.default'))->exists($dir . $oldImage)) {
+            Storage::disk(config('filesystems.default'))->delete($dir . $oldImage);
         }
 
         return $fileType == 'file' ? $this->fileUpload($dir, $format, $image) : $this->upload($dir, $format, $image);
@@ -87,8 +87,8 @@ trait FileManagerTrait
      */
     protected function  delete(string $filePath): array
     {
-        if (Storage::disk('public')->exists($filePath)) {
-            Storage::disk('public')->delete($filePath);
+        if (Storage::disk(config('filesystems.default'))->exists($filePath)) {
+            Storage::disk(config('filesystems.default'))->delete($filePath);
         }
         return [
             'success' => 1,

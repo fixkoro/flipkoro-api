@@ -11,7 +11,10 @@ if (!function_exists('productImagePath')) {
 if (!function_exists('getValidImage')) {
     function getValidImage($path, $type = null, $source = null): string
     {
-
+        if (config('filesystems.default')=='s3')
+        {
+            return \Storage::disk('s3')->url($path);
+        }
         if (DOMAIN_POINTED_DIRECTORY == 'public') {
             $path = str_replace('storage/app/public', 'storage', $path);
         }
